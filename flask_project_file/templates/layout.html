@@ -10,6 +10,8 @@
 
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
 
+    <script type="text/javascript" src="/static/jquery-3.6.0.js"></script>
+
 	{% if title %}
 		<title>Pied Piper - {{ title }}</title>
 	{% else %}
@@ -32,6 +34,7 @@
         <!-- Navbar Right Side -->
         <div class="navbar-nav">
           {% if current_user.is_authenticated %}
+          <a class="nav-item nav-link" href="{{ url_for('music') }}">Music</a>
           <a class="nav-item nav-link" href="{{ url_for('account') }}">Account</a>
           <a class="nav-item nav-link" href="{{ url_for('logout') }}">Log Out</a>
           {% else %}

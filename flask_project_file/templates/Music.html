@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block content %}
+	<h1>Music</h1>
+
+	<audio controls="controls" autoplay="autoplay" ></audio>
+
+	<ul>
+		{% for song in songs %}
+			<li><a href="javascript:void(0);" onclick="playSong('{{song}}')"> {{song}}</a></li>
+		{% endfor %}
+
+
+	</ul>
+
+	<script type="text/javascript">
+		function playSong(song){
+			$('audio').attr('src', '/static/music/' +song)
+		}
+	</script>
+{% endblock content %}

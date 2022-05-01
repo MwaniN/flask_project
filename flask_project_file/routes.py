@@ -11,17 +11,10 @@ from flask_login import login_user, current_user, logout_user, login_required
 posts = [
 
 	{
-		'author': 'Billy Bob',
-		'title' : '1st Post',
-		'content' : 'First post content',
-		'date_posted': 'April 20, 2022'
-	}
-	,
-	{
-		'author': 'Jane Austen',
-		'title' : '2nd Post',
-		'content' : 'Second post content',
-		'date_posted': 'April 21, 2022'
+		'author': 'Pied Piper',
+		'title' : 'Welcome!',
+		'content' : 'First log in, then you can access the music page.',
+		'date_posted': 'May 01, 2022'
 	}
 
 
@@ -37,6 +30,12 @@ def home():
 @app.route("/about")
 def about():
 	return render_template('About.html', title = 'About')
+
+@app.route("/music", methods=['GET'])
+@login_required
+def music():
+	songs = os.listdir('flask_project_file/static/music/')
+	return render_template('Music.html', title = 'Music', songs=songs)
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
