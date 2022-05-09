@@ -25,7 +25,11 @@ posts = [
 @app.route("/")
 @app.route("/home")
 def home():
-	return render_template('Home.html', posts = posts)
+	logged_in = False
+	if current_user.is_authenticated:
+		logged_in = True
+
+	return render_template('Home.html', logged_in=logged_in)
 
 @app.route("/about")
 def about():
