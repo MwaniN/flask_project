@@ -1,5 +1,8 @@
 {% extends "layout.html" %}
 {% block content %}
+
+<div class="home-center">
+  <div class="col-md-6">
 	<div class="content-section">
   <div class="media">
     <img class="rounded-circle account-img" src={{image_file}}>
@@ -13,7 +16,7 @@
       {{ form.hidden_tag() }}
     
       <fieldset class = "form-group">
-        <legend class = "border-bottom mb-4">Account Info</legend>
+        <legend class = "border-bottom mb-4" style="font-weight: bold; font-size: 25px;">Account Info</legend>
         <div class="form-group">
           {{ form.username.label(class="form-control-label") }}
 
@@ -63,5 +66,7 @@
 
       </div>
     </form>
+</div>
+</div>
 </div>
 {% endblock content %}

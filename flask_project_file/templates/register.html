@@ -1,12 +1,14 @@
 {% extends "layout.html" %}
 {% block content %}
+<div class="home-center">
+    <div class="col-md-4">
 	<div class = "content-section">
 		<form method="POST" action="" novalidate>
 			
 			{{ form.hidden_tag() }}
 		
 			<fieldset class = "form-group">
-				<legend class = "border-bottom mb-4">Join Today</legend>
+				<legend class = "border-bottom mb-4" style="font-weight: bold; font-size: 25px;">Join Today</legend>
 				<div class="form-group">
 					{{ form.username.label(class="form-control-label") }}
 
@@ -80,10 +82,12 @@
 
 	</div>
 	<div class="border-top pt-3">
-		<small class ="text-muted">
+		<small style = "color:white;">
 			Already Have An Account? <a class="ml-2" href="{{ url_for('login')}}"> Sign In </a>
 			
 		</small>
 		
 	</div>
+</div>
+</div>
 {% endblock content %}

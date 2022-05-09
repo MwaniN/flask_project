@@ -1,20 +1,46 @@
 {% extends "layout.html" %}
 {% block content %}
-	<h1>Music</h1>
 
-	<audio controls="controls" autoplay="autoplay" ></audio>
+<div style="background-image: linear-gradient(to bottom right, green, purple); height: 100vh; overflow: hidden; padding-top: 100px; padding-bottom: 25px">
 
-	<ul>
-		{% for song in songs %}
-			<li><a href="javascript:void(0);" onclick="playSong('{{song}}')"> {{song}}</a></li>
-		{% endfor %}
+	<form class="search-bar" action="" autocomplete="off"  accept-charset="utf-8">
+        <input name="searchtext" id="myInput" class="form-control" type="search" placeholder="Search Songs/Artists" onkeyup="myFunction()">
+    </form>
 
+	<div className="flex-grow-1 my-2" class="music-list" style="overflow-y: auto;">
+		<ul id="myUL">
+			{% for song in songs %}
+				<li><a href="javascript:void(0);" onclick="playSong('{{song}}')"> {{song}}</a></li>
+			{% endfor %}
+		</ul>
+	</div>
 
-	</ul>
+	<!--<div className="flex-grow-1 my-2" style="overflow-y: auto">Lyrics</div>-->
+
+	<audio class="music-player" controls="controls" autoplay="autoplay" ></audio>
 
 	<script type="text/javascript">
 		function playSong(song){
 			$('audio').attr('src', '/static/music/' +song)
 		}
+		function myFunction() {
+			var input, filter, ul, li, a, i, txtValue;
+			input = document.getElementById("myInput");
+			filter = input.value.toUpperCase();
+			ul = document.getElementById("myUL");
+			li = ul.getElementsByTagName("li");
+
+			//hide tems that don't match search
+			for (i = 0; i < li.length; i++) {
+				a = li[i].getElementsByTagName("a")[0];
+				txtValue = a.textContent || a.innerText;
+				if (txtValue.toUpperCase().indexOf(filter) > -1) {
+					li[i].style.display = "";
+				} else {
+					li[i].style.display = "none";
+				}
+			}
+		}
 	</script>
+</div>
 {% endblock content %}
