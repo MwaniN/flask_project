@@ -7,40 +7,56 @@
         <input name="searchtext" id="myInput" class="form-control" type="search" placeholder="Search Songs/Artists" onkeyup="myFunction()">
     </form>
 
-	<div className="flex-grow-1 my-2" class="music-list" style="overflow-y: auto;">
-		<ul id="myUL">
-			{% for song in songs %}
-				<li><a href="javascript:void(0);" onclick="playSong('{{song}}')"> {{song}}</a></li>
-			{% endfor %}
-		</ul>
+	<div class="table-scroll"> <!--className="flex-grow-1 my-2" class="music-list" style="overflow-y: auto;">-->
+		<table class="styled-table" id="myTable">
+			<thead>
+				<tr>
+					<th>Album</th>
+					<th>Song</th>
+					<th>Artist</th>
+				</tr>
+			</thead>
+				{% for image,song,artist,path in music_table %}
+				<tr>
+					<td><img src="{{ image }}" alt="album_cover" width="100px" height="100px"></td>
+
+					<td><a href="#" onclick='playSong("{{path}}")'> {{song}}</a></td>
+					<td><p> {{artist}}</p></td>
+				</tr>
+				{% endfor %}
+		</table>
 	</div>
 
-	<!--<div className="flex-grow-1 my-2" style="overflow-y: auto">Lyrics</div>-->
-
-	<audio class="music-player" controls="controls" autoplay="autoplay" ></audio>
+	<div><audio class="music-player" controls="controls" autoplay="autoplay" ></audio></div>
 
 	<script type="text/javascript">
-		function playSong(song){
-			$('audio').attr('src', '/static/music/' +song)
+		function playSong(path){
+			$('audio').attr('src', path)
 		}
+		/*function playSong(song){
+			$('audio').attr('src', '/static/music/' +song)
+		}*/
 		function myFunction() {
-			var input, filter, ul, li, a, i, txtValue;
+			// Declare variables
+			var input, filter, table, tr, td, i, txtValue;
 			input = document.getElementById("myInput");
 			filter = input.value.toUpperCase();
-			ul = document.getElementById("myUL");
-			li = ul.getElementsByTagName("li");
+			table = document.getElementById("myTable");
+			tr = table.getElementsByTagName("tr");
 
-			//hide tems that don't match search
-			for (i = 0; i < li.length; i++) {
-				a = li[i].getElementsByTagName("a")[0];
-				txtValue = a.textContent || a.innerText;
+			// Loop through all table rows, and hide those who don't match the search query
+			for (i = 0; i < tr.length; i++) {
+				td = tr[i].getElementsByTagName("td")[1];
+				if (td) {
+				txtValue = td.textContent || td.innerText;
 				if (txtValue.toUpperCase().indexOf(filter) > -1) {
-					li[i].style.display = "";
+					tr[i].style.display = "";
 				} else {
-					li[i].style.display = "none";
+					tr[i].style.display = "none";
+				}
 				}
 			}
-		}
+			}
 	</script>
 </div>
 {% endblock content %}

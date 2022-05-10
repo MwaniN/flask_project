@@ -27,3 +27,21 @@ class Post(db.Model):
 
 	def __repr__(self):
 		return f"Post('{self.title}', '{self.date_posted}')"
+
+class Music(db.Model):
+	title = db.Column(db.String(100), nullable=False)
+	artist_name = db.Column(db.String(100), nullable=False)
+	song_id = db.Column(db.String(40), primary_key=True)
+	duration = db.Column(db.String(10), nullable=False)
+	popularity = db.Column(db.Integer, nullable=False)
+	explicit = db.Column(db.Integer, nullable=False)
+	album_id = db.Column(db.String(100), nullable=False)
+	release_date = db.Column(db.String(10), nullable=False)
+	album_name = db.Column(db.String(100), nullable=False)
+	artist_id = db.Column(db.String(100), nullable=False)
+	mp3_file = db.Column(db.String(100), nullable=False)
+	path_to_mp3 = db.Column(db.String(100), nullable=False)
+	image_url = db.Column(db.String(100), nullable=False)
+
+	def __repr__(self):
+		return f"Music('{self.title}', '{self.artist_name}', '{self.path_to_mp3}', '{self.image_url}', '{self.mp3_file})"

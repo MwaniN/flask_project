@@ -121,7 +121,7 @@ a.article-title:hover {
   display: flex;
   align-items: center;
   border-radius: 60px;
-  padding:10px 20px;
+  padding: 10px 20px;
   bottom:0;
   position: fixed;
 }
@@ -149,6 +149,79 @@ a.article-title:hover {
   align-items: center;
   padding:10px 20px;
 
+}
+
+.styled-table {
+  border-collapse: collapse;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  width: 100%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.table-scroll {
+  overflow: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 85%;
+
+}
+
+table th{
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th {
+  background-color: #953553;
+  color: #fff;
+  text-align: center;
+}
+
+th,
+td {
+  padding: 1em .5em;
+  text-align: center;
+}
+
+table tr {
+  color: #212121;
+}
+
+table tr:nth-child(odd) {
+  background-color: #BBDEFB;
+}
+
+.styled-table tbody tr {
+  border-bottom: 1px solid black;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+::-webkit-scrollbar {
+  width: 20px; 
+}
+ 
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+ 
+::-webkit-scrollbar-thumb {
+  background-color: #d6dee1;
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #a8bbbf;
 }
 
 

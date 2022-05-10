@@ -2,9 +2,10 @@ import os
 import secrets
 from PIL import Image
 from flask import render_template, url_for, flash, redirect, request
+from matplotlib.pyplot import title
 from flask_project_file import app, db, bcrypt
 from flask_project_file.forms import RegistrationForm, LoginForm, UpdateAccountForm
-from flask_project_file.models import User, Post
+from flask_project_file.models import User, Music
 from flask_login import login_user, current_user, logout_user, login_required
 
 
@@ -38,8 +39,14 @@ def about():
 @app.route("/music", methods=['GET'])
 @login_required
 def music():
-	songs = os.listdir('flask_project_file/static/music/')
-	return render_template('Music.html', title = 'Music', songs=songs)
+	songs = [item[0] for item in Music.query.with_entities(Music.title)]
+	artist_name = [item[0] for item in Music.query.with_entities(Music.artist_name)]
+	path_to_mp3 = [item[0] for item in Music.query.with_entities(Music.path_to_mp3)]
+	image_url = [item[0] for item in Music.query.with_entities(Music.image_url)]
+	mp3_file = [item[0] for item in Music.query.with_entities(Music.mp3_file)]
+
+	#songs = os.listdir('flask_project_file/static/music/')
+	return render_template('Music.html', music_table=zip(image_url,songs,artist_name,path_to_mp3))
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
